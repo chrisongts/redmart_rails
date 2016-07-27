@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.0.0'
 gem 'bcrypt'
 gem 'pry'
+gem 'bootstrap-sass', '3.3.6'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 # Use Puma as the app server
