@@ -1,0 +1,80 @@
+table, th, td {
+   border: 1px solid black;
+   border-collapse: collapse;
+   text-align: center;
+}
+
+.user_list {
+    width: 50%;
+    margin-top: 2%;
+}
+
+.product_list {
+    width: 45em;
+    margin-top: 4%;
+}
+
+th {
+  background-color: pink;
+  height: 50px;
+  text-align: center;
+}
+
+tbody {
+    background-color: #b0e0e6;
+  }
+
+#welcome {
+  font-style: italic;
+  font-size: 1em;
+  width: 40em;
+}
+
+h1{
+  margin-top: -5%;
+  margin-left: 10%;
+}
+
+h3 {
+  margin-top: 5%;
+}
+
+#view {
+  width: 38%;
+  height: 18%;
+  background-color: aqua;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+#head_list {
+  margin-left: 15em;
+  margin-right: 5%;
+  margin-top: -6%;
+  float: right;
+}
+
+#clear {
+  clear: both;
+}
+
+li {
+  display: inline;
+  padding-right: .5em;
+}
+
+#new-user, #new-product {
+  width: 25em;
+  border: 2px solid black;
+  margin-top: 2%;
+}
+
+.form-group {
+  margin: 10px 0 0 10px;
+}
+
+#submit-button {
+  margin-top: 5%;
+  margin-bottom: 1%;
+  margin-left: 70%;
+}
