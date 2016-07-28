@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :set_user,        only: [:show, :edit, :update, :destroy]
   before_action :require_login,   only: [:show, :edit, :update, :index]
   # before_action :correct_user,    only: [:show, :edit, :update, :destroy]
-  before_action :correct_user,    except: [:index, :new, :show, :create]
+  # before_action :correct_user,    except: [:index, :new, :show, :create]
+  before_action :correct_user,   only: [:edit, :update, :destroy, :show]
   before_action :require_logout,  only: [:new]
 
 
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find( params[:id] )
+    # @user = User.find( params[:id] )
   end
 
   # GET /users/new
@@ -87,9 +88,10 @@ class UsersController < ApplicationController
 
       @user = User.find(params[:id])
 
-      unless current_user?(user)
+      unless current_user?(@user)
         flash[:warning] = 'You are not allowed to access'
-        redirect_to root_url
+        # redirect_to root_url
+        redirect_to help_url
       end
 
     end

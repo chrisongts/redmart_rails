@@ -48,7 +48,12 @@
               <%= link_to "About", about_path %>
             </li>
             <li>
-              <%= link_to "Sign Uo", signup_path %>
+              <%= if logged_in?
+                # link_to "Reset Password", edit_user_path(user)
+                link_to "Reset Password", edit_user_path(User.find_by(id: session[:user_id]))
+                else
+                  link_to "Sign Up", signup_path
+                end %>
             </li>
             <li>
               <%= link_to "Help", help_path %>
