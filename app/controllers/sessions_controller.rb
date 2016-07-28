@@ -18,4 +18,12 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
+
+  def destroy
+    log_out if logged_in?
+    # add flash after log out
+    flash[:info] = 'You have logged out. Thank you!'
+    redirect_to root_url
+  end
+
 end
