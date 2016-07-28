@@ -88,11 +88,13 @@ class UsersController < ApplicationController
 
       @user = User.find(params[:id])
 
+      unless admin_user?(@check)
       unless current_user?(@user)
         flash[:warning] = 'You are not allowed to access'
         # redirect_to root_url
         redirect_to help_url
       end
+    end
 
     end
 
