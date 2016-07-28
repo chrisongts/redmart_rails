@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
+  before_action :set_user,        only: [:show, :edit, :update, :destroy]
+  before_action :require_login,   only: [:show, :edit, :update, :index]
+  # before_action :correct_user,    only: [:show, :edit, :update, :destroy]
+  before_action :correct_user,    except: [:index, :new, :show, :create]
+  before_action :require_logout,  only: [:new]
+
 
   # GET /users
   # GET /users.json
@@ -64,13 +70,39 @@ class UsersController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
 
+    def require_login
+      unless logged_in?
+        flash[:danger] = 'Not allowed before login'
+        redirect_to root_url
+      end
+    end
+
+    def correct_user
+
+      @user = User.find(params[:id])
+
+      unless current_user?(user)
+        flash[:warning] = 'You are not allowed to access'
+        redirect_to root_url
+      end
+
+    end
+
+    def require_logout
+      if logged_in?
+        flash[:warning] = 'You must logged out to create a new user'
+        redirect_to root_url
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def permitted_user_params
-      params.require(:user).permit(:name, :email, :password)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end
