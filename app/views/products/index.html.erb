@@ -2,15 +2,18 @@
 
 <table class="product_list">
 
-  <a href="/products/new">Create New Product</a>
+  <% if logged_in? && admin_user?(@check) %>
+    <%= link_to 'Create New Product', new_product_path %>
+  <% end %>
 
   <thead>
     <tr>
       <th>ID</th>
       <th>Name</th>
       <th>Brand</th>
-      <!-- <th>Category</th>
-      <th>Price</th> -->
+        <th>Category</th>
+        <th>Price</th>
+
       <% if (logged_in? && admin_user?(@check)) %>
       <th>
       <%= 'Actions' %>
@@ -25,6 +28,8 @@
         <td><%= product.id %></td>
         <td><%= product.name %></td>
         <td><%= product.brand_id %></td>
+          <td><%= product.category_id %></td>
+          <td><%= product.price %></td>
 
         <% if (logged_in? && admin_user?(@check)) %>
         <td>
@@ -36,5 +41,5 @@
 
       </tr>
     <% end %>
-  </tbody>>
+  </tbody>
 </table>

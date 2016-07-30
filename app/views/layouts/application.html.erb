@@ -50,7 +50,7 @@
             <li>
               <%= if logged_in?
                 # link_to "Reset Password", edit_user_path(user)
-                link_to "Reset Password", edit_user_path(User.find_by(id: session[:user_id]))
+                link_to "Edit Profile", edit_user_path(User.find_by(id: session[:user_id]))
                 else
                   link_to "Sign Up", signup_path
                 end %>

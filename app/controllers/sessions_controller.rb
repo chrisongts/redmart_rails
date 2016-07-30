@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
       flash[:success] = 'Login successfully!'
       log_in(user)
       # session[:user_id] = user.id
-      redirect_to user
+      # redirect_to user
+      redirect_to root_url
     else
       # show error notice
       flash.now[:danger] = 'Invalid email/password combination'
