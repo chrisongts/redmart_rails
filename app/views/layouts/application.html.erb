@@ -62,7 +62,7 @@
               <%= if logged_in?
                 link_to "Logout", logout_path, method: :delete
                 else
-                  link_to "Login", root_path
+                  link_to "Login", sessions_new_path
                 end %>
             </li>
 

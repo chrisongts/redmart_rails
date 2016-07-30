@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  resources :products
   # get 'static_pages/about'
   #
   # get 'static_pages/help'
 
-  root 'sessions#new'
+  # root 'sessions#new'
+  root 'products#index'
   get 'sessions/new'
 
   get '/signup', to: 'users#new'

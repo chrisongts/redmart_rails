@@ -1,0 +1,13 @@
+<!-- <p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %> -->
+
+<h3>Product Details Page</h3>
+
+<ul id="view">
+  <li>Name     : <%= @product[:name] %><br /></li>
+  <li>Brand ID : <%= @product[:brand_id] %><br /></li>
+  <li>Category ID : <%= @product[:category_id] %><br /></li>
+  <li>Price : $<%= @product[:price] %><br /></li>
+</ul>

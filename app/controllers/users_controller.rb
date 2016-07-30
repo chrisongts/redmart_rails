@@ -37,7 +37,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        # format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to root_url, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -50,9 +51,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(permitted_user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
+
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -78,23 +80,28 @@ class UsersController < ApplicationController
     end
 
     def require_login
+      # @user = User.find(params[:id])
       unless logged_in?
+        unless !(set_user.new_record?)
         flash[:danger] = 'Not allowed before login'
         redirect_to root_url
       end
     end
+    end
 
     def correct_user
 
+      if logged_in?
       @user = User.find(params[:id])
 
       unless admin_user?(@check)
       unless current_user?(@user)
         flash[:warning] = 'You are not allowed to access'
         # redirect_to root_url
-        redirect_to help_url
+        redirect_to root_url
       end
     end
+  end
 
     end
 
