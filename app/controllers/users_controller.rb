@@ -82,10 +82,10 @@ class UsersController < ApplicationController
     def require_login
       # @user = User.find(params[:id])
       unless logged_in?
-        unless !(set_user.new_record?)
+        # unless !(set_user.new_record?)
         flash[:danger] = 'Not allowed before login'
         redirect_to root_url
-      end
+      # end
     end
     end
 

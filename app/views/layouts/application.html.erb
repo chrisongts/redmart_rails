@@ -49,11 +49,16 @@
               </li>
             <% end %>
             <li>
-              <%= if logged_in?
-                link_to "Logout", logout_path, method: :delete
-              else
-                link_to "Login", sessions_new_path
-              end %>
+              <% if logged_in? %>
+                <%= link_to "Product Review ", reviews_path %>
+              <% end %>
+            </li>
+            <li>
+              <% if logged_in? %>
+                <%= link_to "Logout", logout_path, method: :delete %>
+              <% else %>
+                <%= link_to "Login", sessions_new_path %>
+              <% end %>
             </li>
 
           </ul>

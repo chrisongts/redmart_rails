@@ -46,3 +46,7 @@
     <% end %>
   </tbody>
 </table>
+<% if logged_in? %>
+  <p></p>
+  <%= link_to 'Create Product Review', new_review_path(@product) %>
+<% end %>
