@@ -68,7 +68,7 @@ h3 {
 
 li {
   display: inline;
-  padding-right: .5em;
+  padding-right: 1.5em;
 }
 
 #new-user, #new-product {
@@ -85,4 +85,10 @@ li {
   margin-top: 5%;
   margin-bottom: 1%;
   margin-left: 70%;
+}
+
+#edit-review {
+  width: 70%;
+  height: 25%;
+  background-color: pink;
 }
