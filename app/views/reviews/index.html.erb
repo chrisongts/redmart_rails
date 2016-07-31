@@ -1,0 +1,52 @@
+
+<h3>Reviews</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <% if logged_in? %>
+      <th>User Name</th>
+      <% end %>
+      <th>Product Name</th>
+      <th>Content</th>
+      <!-- <th colspan="3"></th> -->
+      <% if (logged_in?) %>
+      <th>
+      <%= 'Actions' %>
+      </th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.id %></td>
+        <% review = Review.find(review.id) %>
+        <% user = review.user %>
+        <% prod = review.product %>
+
+        <% if logged_in? %>
+        <td><%= user.name %></td>
+        <% end %>
+        <td><%= prod.name %></td>
+        <td><%= review.content %></td>
+
+        <% if (logged_in?) %>
+        <td>
+          <%= link_to 'Show', review %>
+          <% if admin_user?(@check) %>
+          <%= link_to 'Edit', edit_review_path(review) %>
+          <%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if logged_in? %>
+  <%= link_to 'New Review', new_review_path %>
+<% end %>

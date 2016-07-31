@@ -1,0 +1,26 @@
+<!-- <p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Back', reviews_path %> -->
+
+<h3>Review Details Page</h3>
+
+<% user = User.find_by_id(session[:user_id]) %>
+<% product = Product.find_by_id(@review.product_id) %>
+<!-- <%= user.name %>
+<%= user.id %>
+<%= product.name %> -->
+
+<ul id="view">
+  <li>Content     : <%= @review[:content] %><br /></li>
+  <p></p>
+  <li>User        : <%= user.name %><br /></li>
+  <li>Product     : <%= product.name %><br /></li>
+</ul>
+
+<% if user.id == @review.user_id %>
+  <%= link_to 'Edit', edit_review_path(@review) %>
+  <%= link_to 'Remove', @review, method: :delete, data: { confirm: 'Are you sure?' } %></br>
+<% end %>
+
+<%= link_to 'Back', reviews_path %>

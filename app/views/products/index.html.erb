@@ -14,7 +14,7 @@
         <th>Category</th>
         <th>Price</th>
 
-      <% if (logged_in? && admin_user?(@check)) %>
+      <% if logged_in? %>
       <th>
       <%= 'Actions' %>
       </th>
@@ -31,11 +31,14 @@
           <td><%= product.category_id %></td>
           <td><%= product.price %></td>
 
-        <% if (logged_in? && admin_user?(@check)) %>
+        <% if logged_in? %>
         <td>
+          <%= link_to 'Review', new_review_path(product) %>
+          <% if (logged_in? && admin_user?(@check)) %>
           <%= link_to 'Show', product %>
           <%= link_to 'Edit', edit_product_path(product) %>
           <%= link_to 'Remove', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
         </td>
         <% end %>
 

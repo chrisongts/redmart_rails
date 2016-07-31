@@ -11,3 +11,4 @@
   <li>Category ID : <%= @product[:category_id] %><br /></li>
   <li>Price : $<%= @product[:price] %><br /></li>
 </ul>
+<%= link_to 'Review', new_review_path(@product) %>

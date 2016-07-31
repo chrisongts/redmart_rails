@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-
+  has_many :reviews, dependent: :destroy
   before_save { email.downcase! }
 
   # VALIDATION
@@ -18,5 +18,5 @@ class User < ApplicationRecord
 
   # FOR HASHING PASSWORD
   has_secure_password
-  
+
 end
