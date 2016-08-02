@@ -29,8 +29,9 @@
 
         <% if logged_in? %>
         <td>
+          <%= link_to 'Edit', edit_user_cart_path(session[:user_id], cart.id) %>
 
-
+          <%= link_to 'Remove', user_cart_path(session[:user_id], cart.id), method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
         <% end %>
 
