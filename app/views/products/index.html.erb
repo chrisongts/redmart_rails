@@ -2,6 +2,12 @@
 
 <table class="product_list">
 
+  <% if logged_in? %>
+    <%= link_to 'Create Product Review', new_review_path(@product) %>
+    <%= link_to 'Show Shopping cart', user_carts_path(session[:user_id]) %>
+    <!-- <%= link_to 'Show Shopping cart', product_carts_path(@products.ids) %> -->
+  <% end %>
+  <p></p>
   <% if logged_in? && admin_user?(@check) %>
     <%= link_to 'Create New Product', new_product_path %>
   <% end %>
@@ -33,7 +39,7 @@
 
         <% if logged_in? %>
         <td>
-          <%= link_to 'Review', new_review_path(product) %>
+          <%= link_to 'Add to cart', new_product_cart_path(product_id: product.id) %>
           <% if (logged_in? && admin_user?(@check)) %>
           <%= link_to 'Show', product %>
           <%= link_to 'Edit', edit_product_path(product) %>
@@ -46,7 +52,3 @@
     <% end %>
   </tbody>
 </table>
-<% if logged_in? %>
-  <p></p>
-  <%= link_to 'Create Product Review', new_review_path(@product) %>
-<% end %>

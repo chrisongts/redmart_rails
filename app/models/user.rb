@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
+  has_one  :cart
   before_save { email.downcase! }
 
   # VALIDATION

@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   resources :reviews
-  resources :products
+  resources :products do
+    resources :carts
+  end
+
+  resources :users do
+    resources :carts
+  end
+
   # get 'static_pages/about'
   #
   # get 'static_pages/help'
@@ -16,6 +23,8 @@ Rails.application.routes.draw do
 
   get '/about', to: 'static_pages#about'
   get '/help', to: 'static_pages#help'
+
+  get '/products/carts', to: 'carts#index'
 
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
