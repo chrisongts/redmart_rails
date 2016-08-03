@@ -19,7 +19,7 @@
 
   <div class="field">
     <%= f.label :user_id %>
-    <%= f.text_field :user_name, value:user.email %>
+    <%= f.text_field :user_name, disabled: true, value:user.email %>
     <%= f.hidden_field :user_id, value:user.id %>
   </div>
 
