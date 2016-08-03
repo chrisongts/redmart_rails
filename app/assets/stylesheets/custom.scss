@@ -35,6 +35,10 @@ table, th, td {
 #redmart{
   margin-top: -4%;
   margin-left: 12%;
+  font-family: fantasy;
+  font-size: 40px;
+  font-weight: bold;
+  color: #0000cd;
 }
 
 #menu {
@@ -50,10 +54,6 @@ th {
 tbody {
     background-color: #b0e0e6;
   }
-
-// td {
-//   height: 5%;
-// }
 
 h3 {
   margin-top: 5%;
@@ -110,7 +110,6 @@ li {
   margin-left: 70%;
 }
 
-
 #edit-review {
   width: 70%;
   height: 25%;
@@ -119,4 +118,8 @@ li {
 
 form {
   margin-left: 5%;
+}
+
+.field {
+  width: 50em;
 }
