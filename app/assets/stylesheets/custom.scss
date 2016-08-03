@@ -1,7 +1,8 @@
-$gray-medium-light: #eaeaea;
-
-$navbar-default-color: red;
-$navbar-default-bg: red;
+//
+// $gray-medium-light: #eaeaea;
+//
+// $navbar-default-color: red;
+// $navbar-default-bg: red;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -10,41 +11,63 @@ table, th, td {
    border: 1px solid black;
    border-collapse: collapse;
    text-align: center;
+   margin-left: 5%;
 }
 
 .user_list {
     width: 50%;
-    margin-top: 2%;
+    margin-top: 5%;
 }
 
 .product_list {
-    width: 70%;
+    width: 60%;
     margin-top: 4%;
+}
+
+#welcome {
+  font-style: italic;
+  font-size: 1em;
+  width: 40em;
+  margin-top: 2%;
+  margin-left: 4%;
+}
+
+#redmart{
+  margin-top: -4%;
+  margin-left: 12%;
+}
+
+#menu {
+  margin: 0 auto;
+  margin-top: 1.5%;
 }
 
 th {
   background-color: pink;
   height: 50px;
-  text-align: center;
 }
 
 tbody {
     background-color: #b0e0e6;
   }
 
-#welcome {
-  font-style: italic;
-  font-size: 1em;
-  width: 40em;
-}
-
-h1{
-  margin-top: -5%;
-  margin-left: 10%;
-}
+// td {
+//   height: 5%;
+// }
 
 h3 {
   margin-top: 5%;
+  margin-left: 5%;
+}
+
+a {
+  margin-left: 5%;
+  padding-left: .5%;
+  margin-bottom: -5%
+}
+
+p {
+  text-indent: 5%;
 }
 
 #view {
@@ -87,8 +110,13 @@ li {
   margin-left: 70%;
 }
 
+
 #edit-review {
   width: 70%;
   height: 25%;
   background-color: pink;
+}
+
+form {
+  margin-left: 5%;
 }

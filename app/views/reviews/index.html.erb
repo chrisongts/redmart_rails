@@ -1,6 +1,11 @@
 
 <h3>Reviews</h3>
 
+<% if logged_in? %>
+  <%= link_to 'New Review', new_review_path %>
+  <p></p>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -46,7 +51,3 @@
     <% end %>
   </tbody>
 </table>
-
-<% if logged_in? %>
-  <%= link_to 'New Review', new_review_path %>
-<% end %>
