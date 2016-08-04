@@ -1,12 +1,17 @@
 class CartsController < ApplicationController
 
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :require_login,   only: [:show, :edit, :update, :index]
+  before_action :correct_user,   only: [:show]
 
     # GET /products
     # GET /products.json
     def index
-      @carts = Cart.where(user_id: session[:user_id])
-
+      if admin_user?(@check)
+        @carts = Cart.all
+      else
+        @carts = Cart.where(user_id: session[:user_id])
+      end
     end
 
     # GET /products/1
@@ -21,13 +26,24 @@ class CartsController < ApplicationController
 
     def edit
       @cart = Cart.find( params[:id])
-
+      @product = Product.find_by_id(@cart.product_id)
     end
 
     def create
       @cart = Cart.new(cart_params)
-      @product = Product.find(params[:product_id])
+      @prod = Product.find(params[:product_id])
 
+      @found = false
+      @cart_all = Cart.all
+      @cart_all.each do |cart|
+        unless cart.user.id != session[:user_id]
+          if cart.product_id == @prod.id
+            @found = true
+          end
+        end
+      end
+
+    if !@found
       respond_to do |format|
         if @cart.save
           format.html { redirect_to user_carts_path(session[:user_id]), notice: 'Item was successfully added to cart.' }
@@ -37,7 +53,11 @@ class CartsController < ApplicationController
           format.json { render json: product_carts_path.errors, status: :unprocessable_entity }
         end
       end
+    else
+      flash[:danger] = 'Duplicate product found in cart'
+      redirect_to product_carts_path
     end
+  end
 
     def update
       @cart = Cart.find( params[:id])
@@ -54,11 +74,12 @@ class CartsController < ApplicationController
 
     def destroy
       @cart = Cart.find( params[:id])
-      @cart.destroy
+      if @cart.destroy
       respond_to do |format|
         format.html { redirect_to user_carts_path(session[:user_id]), notice: 'Item in cart was successfully destroyed.' }
         format.json { head :no_content }
       end
+    end
     end
 
     private
@@ -67,6 +88,31 @@ class CartsController < ApplicationController
         @cart = Cart.find(params[:id])
       end
 
+      def require_login
+        # @user = User.find(params[:id])
+        unless logged_in?
+          # unless !(set_user.new_record?)
+          flash[:danger] = 'Not allowed before login'
+          redirect_to root_url
+        # end
+      end
+      end
+
+      def correct_user
+
+        if logged_in?
+        @user = User.find(params[:id])
+
+        unless admin_user?(@check)
+        unless current_user?(@user)
+          flash[:warning] = 'You are not allowed to access'
+          # redirect_to root_url
+          redirect_to root_url
+        end
+        end
+      end
+    end
+
       # Never trust parameters from the scary internet, only allow the white list through.
       def cart_params
         # params.fetch(:review, {})
@@ -74,7 +120,8 @@ class CartsController < ApplicationController
       end
 
       def set_product
-        @product = Product.find(params[:id])
+        @c = Cart.find( params[:id])
+        @product_id = @c.product_id
       end
 
 end

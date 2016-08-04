@@ -1,6 +1,5 @@
 <h3>Editing Item in Cart</h3>
 
-<% @prod = Product.find_by_id(:product_id) %>
 <% user = User.find_by_id(session[:user_id]) %>
 
 <%= form_for(@cart, url: user_cart_path(session[:user_id])) do |f| %>

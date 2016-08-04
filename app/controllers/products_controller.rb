@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :require_login,   only: [:show, :edit, :update]
+  before_action :correct_user,   only: [:edit, :update, :destroy, :show]
 
   # GET /products
   # GET /products.json
@@ -66,6 +68,32 @@ class ProductsController < ApplicationController
     def set_product
       @product = Product.find(params[:id])
     end
+
+    def require_login
+      # @user = User.find(params[:id])
+      unless logged_in?
+        # unless !(set_user.new_record?)
+        flash[:danger] = 'Not allowed before login'
+        redirect_to root_url
+      # end
+    end
+    end
+
+    def correct_user
+
+      if logged_in?
+      @user = User.find(params[:id])
+
+      unless admin_user?(@check)
+      unless current_user?(@user)
+        flash[:warning] = 'You are not allowed to access'
+        # redirect_to root_url
+        redirect_to root_url
+      end
+      end
+    end
+    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params

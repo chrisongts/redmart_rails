@@ -19,8 +19,11 @@
   </thead>
   <tbody>
     <% @carts.each do |cart| %>
-    <% user = User.find_by_id(session[:user_id]) %>
-    <% prod = Product.find_by_id(cart.product.id) %>
+
+
+    <!-- <% user = User.find_by_id(session[:user_id]) %>
+
+    <% prod = Product.find_by_id(cart.product.id) %> -->
       <tr>
         <td><%= cart.id %></td>
         <td><%= prod.name %></td>
