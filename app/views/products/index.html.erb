@@ -5,7 +5,7 @@
   <% if logged_in? %>
     <%= link_to 'Create Product Review', new_review_path(@product) %>
     <%= link_to 'Show Shopping cart', user_carts_path(session[:user_id]) %>
-    <!-- <%= link_to 'Show Shopping cart', product_carts_path(@products.ids) %> -->
+    
   <% end %>
   <p></p>
   <% if logged_in? && admin_user?(@check) %>

@@ -8,9 +8,9 @@ class CartsController < ApplicationController
     # GET /products.json
     def index
       if admin_user?(@check)
-        @carts = Cart.all
+        @carts = Cart.all.sort
       else
-        @carts = Cart.where(user_id: session[:user_id])
+        @carts = Cart.where(user_id: session[:user_id]).sort
       end
     end
 
