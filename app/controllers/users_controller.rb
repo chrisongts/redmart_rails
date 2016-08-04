@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.all.sort
   end
 
   # GET /users/1
@@ -100,10 +100,9 @@ class UsersController < ApplicationController
         # redirect_to root_url
         redirect_to root_url
       end
+      end
     end
   end
-
-    end
 
     def require_logout
       if logged_in?
